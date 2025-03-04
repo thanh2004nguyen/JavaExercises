@@ -1,13 +1,13 @@
 package main;
 
 public class Employee {
-	private int id;
+	private String id;
 	private String name;
 	private String position;
 	private double salary;
 	private String managerId;
 	
-	public Employee(int id, String name, String position, double salary, String managerId) {
+	public Employee(String id, String name, String position, double salary, String managerId) {
 		this.id = id;
 		this.name = name;
 		this.position = position;
@@ -15,7 +15,7 @@ public class Employee {
 		this.managerId = managerId;
 	}
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	public String getName() {
@@ -30,7 +30,7 @@ public class Employee {
 	public String getManagerId() {
 		return managerId;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id =  id;
 	}
 	public void setName(String name) {

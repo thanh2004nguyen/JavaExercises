@@ -45,13 +45,13 @@ public class Manager {
 		}
 
 	}
-
+	
+	
 	private static void addEmp() {
 		System.out.println("Nhap id: ");
-		int id = scanner.nextInt();
+		String id = scanner.nextLine();;
 		System.out.println("Nhap name:");
 		String name = scanner.nextLine();
-		scanner.nextLine();
 		System.out.println("Nhap position:");
 		String position = scanner.nextLine();
 		System.out.println("Nhap salary:");
@@ -60,28 +60,70 @@ public class Manager {
 		System.out.println("Nhap managerId:");
 		String managerId = scanner.nextLine(); 
 		Employee emp = new Employee(id, name, position, salary, managerId);
-		employees.put("01", emp);
-		System.out.println(employees);
-		
+		employees.put(id, emp);
+		System.out.println("Thêm mới nhân viên thành công!");
 	}
 
 	private static void displayEmp() {
-		// TODO Auto-generated method stub
+		System.out.println("Hiển thị danh sách nhân viên");
+		for(String i : employees.keySet()) {
+			System.out.println(i);
+			System.out.println(employees.get(i).toString());
+		}
 		
 	}
 
 	private static void editEmp() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Nhập id của employee cần chỉnh sửa!");
+		String id = scanner.nextLine();
+		for(String i : employees.keySet()) {
+			if(employees.containsKey(id)) {
+				System.out.println("Nhập lại thông tin của nhân viên" + employees.get(i));
+				System.out.println("Nhập tên: ");
+				String newName = scanner.nextLine();
+				System.out.println("Nhập position: ");
+				String newPosition = scanner.nextLine();
+				System.out.println("Nhập salary: ");
+				double newSalary = scanner.nextDouble();
+				System.out.println("Nhập managerId:");
+				String newManagerId = scanner.nextLine();
+				Employee emp = employees.get(i);
+				emp.setName(newName);
+				emp.setPosition(newPosition);
+				emp.setSalary(newSalary);
+				emp.setManagerId(newManagerId);
+				System.out.println("Edit thành công!");
+				return;
+			}
+		}
+		System.out.println("Không tìm thấy employee có id = "+ id);
 	}
 
 	private static void deleteEmp() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Nhập id của employee cần xóa: ");
+		String id = scanner.nextLine();
+		if(employees.remove(id) != null) {
+			System.out.println("Xoa thanh cong");
+			return;
+		}else {
+			System.out.println("Khong tim thấy");
+		}
+		System.out.println("Không tìm thấy id trùng");
 	}
 
 	private static void showEmpByManager() {
-		// TODO Auto-generated method stub
+		 System.out.print("Nhập ID của quản lý: ");
+	        String managerId = scanner.nextLine();
+	        boolean found = false;
+	        for (Employee emp : employees.values()) {
+	            if (emp.getManagerId().equals(managerId)) {
+	                System.out.println(emp);
+	                found = true;
+	            }
+	        }
+	        if (!found) {
+	            System.out.println("Không có nhân viên nào thuộc quản lý có ID: " + managerId);
+	        }
 		
 	}
 }
